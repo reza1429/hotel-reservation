@@ -26,12 +26,14 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        DB::unprepared('CREATE TRIGGER `insert_history` AFTER INSERT ON `pembayarans` FOR EACH ROW
-            INSERT INTO history_trans(history_trans.kode_bayar, history_trans.reservasi_id, history_trans.total_harga, history_trans.uang_bayar) VALUES(NEW.kode_bayar, NEW.reservasi_id, NEW.total_harga, NEW.uang_bayar)
+        DB::unprepared('CREATE TRIGGER `insert_history` AFTER UPDATE ON `pembayarans` FOR EACH ROW
+            INSERT INTO history_trans(history_trans.kode_bayar,history_trans.reservasi_id,history_trans.total_harga, history_trans.uang_bayar) 
+            VALUES(NEW.kode_bayar, NEW.reservasi_id, NEW.total_harga, NEW.uang_bayar)
         ');
-        
-        DB::unprepared('CREATE TRIGGER `update_status_reservasi` AFTER INSERT ON `pembayarans` FOR EACH ROW
-            UPDATE reservasis SET reservasis.status_pay = 1 WHERE reservasi.id = NEW.reservasi_id
+
+        DB::unprepared('CREATE TRIGGER `update_status_reservasi` AFTER UPDATE ON `pembayarans` FOR EACH ROW
+            UPDATE reservasis SET reservasis.status_pay = 1 
+            WHERE reservasis.id = NEW.reservasi_id
         ');
     }
 

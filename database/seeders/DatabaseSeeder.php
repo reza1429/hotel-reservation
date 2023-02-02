@@ -76,12 +76,12 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // reservasi::create([
-        //     'kamar_id' => 1,
-        //     'pengunjung_id' => 1,
-        //     'status_pay' => 0,
-        //     'lama_sewa' => 1
-        // ]);
+        reservasi::create([
+            'kamar_id' => 1,
+            'pengunjung_id' => 1,
+            'status_pay' => 0,
+            'lama_sewa' => 1
+        ]);
 
             
     }

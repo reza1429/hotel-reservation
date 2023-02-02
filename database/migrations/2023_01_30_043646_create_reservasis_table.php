@@ -32,7 +32,8 @@ return new class extends Migration
         });
 
         DB::unprepared('CREATE TRIGGER `update_status_kamar` AFTER INSERT ON `reservasis` FOR EACH ROW
-            UPDATE tbl_kamars SET tbl_kamars.status = 1 WHERE tbl_kamars.id = NEW.kamar_id
+            UPDATE tbl_kamars SET tbl_kamars.status = 1 
+            WHERE  tbl_kamars.id = NEW.kamar_id
         ');
     }
 
