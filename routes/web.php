@@ -21,16 +21,11 @@ Route::get('/', function () {
 });
 
 Route::resource('reservasi',reservasiController::class);
+Route::get('/create/reservation/{id}', [reservasiController::class, 'createReservation'])->name('createReservation');
 Route::resource('kamar',kamarController::class);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/search/customer', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

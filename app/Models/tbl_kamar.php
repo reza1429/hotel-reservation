@@ -20,6 +20,6 @@ class tbl_kamar extends Model
     }
 
     public function tipe_kamar(){
-        return $this->belongsTo(tipe_kamar::class);
+        return $this->belongsTo(tipe_kamar::class, 'tipe_id');
     }
 }

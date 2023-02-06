@@ -12,7 +12,7 @@ class reservasi extends Model
     protected $guarded = [];
 
     public function tbl_kamar(){
-        return $this->belongsTo(tbl_kamar::class);
+        return $this->belongsTo(tbl_kamar::class, 'kamar_id');
     }
 
     public function pembayaran(){

@@ -11,6 +11,11 @@ class reservasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function createReservation($id)
+    {
+        return $id;
+    }
+
     public function index()
     {
         //
