@@ -25,9 +25,10 @@
                             <td>{{$item->pengunjung->no_ktp}}</td>
                             <td>{{$item->tbl_kamar->tipe_kamar->nama_tipe}}</td>
                             <td>{{$item->tbl_kamar->kode_ruangan}}</td>
-                            <td>{{$item->created_at}}</td>
+                            <td>{{$item->created_at->format('l, j F Y H:i')}}</td>
                             <td>
-                                <a href="" class="btn btn-sm btn-outline-danger">Detail</a>
+                                <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" data-bs-target="#modal-detail{{$item->id}}">Detail</button>
+                                
                             </td>
                         </tr>
                         @endforeach
@@ -111,6 +112,76 @@
         </div>
 
     </div>
+
+    @foreach ($reservasi as $detail)
+    <div class="modal fade" id="modal-detail{{$detail->id}}">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detail Pengunjung</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                <table class="table table-borderless">
+                <tr>
+                    <td>NIK : {{$detail->pengunjung->no_ktp}}</td>
+                </tr>
+                <tr>
+                    <td>NAMA : {{$detail->pengunjung->nama}}</td>
+                </tr>
+                <tr>
+                    <td>ALAMAT : {{$detail->pengunjung->alamat}}</td>
+                </tr>
+                <tr>
+                    <td>NO. Telp : {{$detail->pengunjung->no_telp}}</td>
+                </tr>
+                <tr>
+                    <td>TIPE RUANGAN : {{$detail->tbl_kamar->tipe_kamar->nama_tipe}}</td>
+                </tr>
+                <tr>
+                    <td>KODE RUANGAN : {{$detail->tbl_kamar->kode_ruangan}}</td>
+                </tr>
+                <tr>
+                    <td>TANGGAL CHECK-IN : {{$detail->created_at->format('l, j F Y H:i')}}</td>
+                </tr>
+                <tr><?php
+                    $in = strtotime($detail->created_at);
+                    $out = (int)$detail->lama_sewa*60*60*24;
+                    $final = $out + $in;
+                    ?>
+                    <td>TANGGAL CHECK-OUT : <?=date('l, j F Y H:i', $final )?></td>
+                </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+    <script>
+        function detailCust(e){
+            let textvalx = $('#modal-detail')
+            // textvalx.removeClass("d-none");
+            // textvalx.text(e.value)
+            let val_detail = e.value
+            $.ajax({
+                url: "/detail/customer",
+                type:"GET",
+                data:{ val_detail },
+                success: function(res){
+                    // if(res.success){
+                    //     alert(res.message)
+                    // }
+                    $("#modal-detail").html(res.html)
+                    console.log(res)
+                },
+                error: function(error) {
+                    console.log(error)
+                }
+            });
+            // console.log(e.value)
+        }
+    </script>
 
     <script>
         function searchCust(e){
