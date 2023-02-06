@@ -64,16 +64,3 @@
     </div>
 </div>
 @endsection
-<form action="{{ route('pengunjung.cari') }}" class="d-flex align-items-center border" method="GET">
-    <div class="form-group mt-3 mx-0 " style="width: 70%" borde>
-        <input type="text" class="form-control " placeholder="Cari Pengunjung" value="{{ $hasilCari}}" name="nama">
-        <div class="d-flex">
-        <input type="submit" class="btn  btn-success btn-sm" height:30px" value="CARI">
-        <a href="/pengunjung"class="btn btn-warning btn-sm" height:30px" >Refresh</a> 
-    </div>
-    </div>
-   
-    <div class="form-group mx-1 "  style="width: 10%" >
-        <button type="button" class="btn btn-primary btn-sm" style="width: 100%; height:30px" data-bs-toggle="modal" data-bs-target="#exampleModal" >Tambah</button> 
-    </div>
-</form>

@@ -32,6 +32,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('/pengunjung', pengunjungController::class );
-Route::get('pengun/cari', [pengunjungController::class, 'cari'])->name('pengunjung.cari');
+Route::get('cari/pengunjung', [pengunjungController::class, 'cari'])->name('pengunjung.cari');
 
 

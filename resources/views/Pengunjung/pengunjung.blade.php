@@ -33,11 +33,14 @@
 
                     
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                    <div class="container">
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ session('status') }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
                         </div>
                     @endif
-
+                   
                     {{-- {{ __('You are logged in!') }} --}}
                         <div class="table-responsive-md">
                     <table class="table table-stripped  border" >
@@ -50,6 +53,9 @@
                             <td  style="width: 20%">Action</td>
                         </thead>
                         <tbody>
+                            @if($pengunjungs->isEmpty())
+                            <tr><td colspan="6" class="text-center fw-bold"><h6>Tidak Ada Data yang Ditemukan</h6></td></tr>
+                            @else
                             @foreach ($pengunjungs as $i => $item)
                                 
                             <tr>
@@ -64,12 +70,12 @@
                                     @method('delete')
                                 <a href="{{ route('pengunjung.edit', $item->id)}}" class="btn btn-sm btn-warning" title="Edit Pengunjung"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                 
-                                <button type="submit" class="btn btn btn-sm btn-danger" ><i class="fa fa-trash"title="Hapus Pengunjung" aria-hidden="true"></i></button>
+                                <button type="submit" class="btn btn btn-sm btn-danger"  onclick="return confirm('Apakah Anda Yakin?')"><i class="fa fa-trash"title="Hapus Pengunjung" aria-hidden="true"></i></button>
                             </form>
                             </td>
                         </tr>
                         @endforeach
-                        
+                        @endif
                         </tbody>
                         
                     </table>

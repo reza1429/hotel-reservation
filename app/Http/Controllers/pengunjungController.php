@@ -127,8 +127,11 @@ class pengunjungController extends Controller
     }
     public function cari(Request $request)
     {   
+        if(empty($request->nama)){  
+            return redirect('/pengunjung');
+        }
         $hasilCari = $request->nama;
-            $pengunjungs = pengunjung::where('nama', 'like', '%'. $request->nama.'%')->paginate(5);
+            $pengunjungs = pengunjung::where('nama', 'like', '%'. $request->nama.'%')->paginate(5)->withQueryString();
             if($pengunjungs->isEmpty()){
                 $pengunjungs = pengunjung::where('no_ktp', 'like', '%'. $request->nama.'%')->paginate(5);
             } 
