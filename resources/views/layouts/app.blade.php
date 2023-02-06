@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
-
+                        {{-- <a href="" class="text-none">History Transaksi</a> --}}
                     </ul>
 
                     <!-- Right Side Of Navbar -->
