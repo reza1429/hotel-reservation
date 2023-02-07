@@ -43,8 +43,10 @@
                     <div class="card-header bg-danger">
                         <h4 class="m-0 fw-bold text-white">
                             Pelanggan
-                            &nbsp;
-                            <button class="btn btn-sm btn-light fw-bold px-3 rounded-5">tambah +</button>
+                            <button class="btn btn-sm btn-outline-light fw-bold px-3 rounded-4">
+                                tambah
+                                <i class="fa fa-plus fa"></i>
+                            </button>
                         </h4>
                     </div>
                     <div class="card-body">

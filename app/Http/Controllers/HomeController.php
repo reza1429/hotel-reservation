@@ -35,8 +35,12 @@ class HomeController extends Controller
     public function search()
     {
         // return true;
-        
-        $pengunjung = pengunjung::where('no_ktp', 'LIKE', '%'.request()->get('val').'%')->get();
+        if(request()->get('val') == null){
+            $pengunjung = pengunjung::where('no_ktp', 'asdf')->get();
+            // $pengunjung = pengunjung::where('no_ktp', request()->get('val'))->get();
+        }else{
+            $pengunjung = pengunjung::where('no_ktp','LIKE', '%'.request()->get('val').'%')->get();
+        }
         // return $pengunjung;
         $html = view('home-customer', compact('pengunjung'))->render();
 
