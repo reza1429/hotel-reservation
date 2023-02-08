@@ -11,7 +11,7 @@ class reservasi extends Model
 
     protected $guarded = [];
 
-    public function tbl_kamar(){
+    public function kamar(){
         return $this->belongsTo(tbl_kamar::class);
     }
 

@@ -19,7 +19,7 @@ class tbl_kamar extends Model
         return $this->hasOne(reservasi::class);
     }
 
-    public function tipe_kamar(){
+    public function tipe(){
         return $this->belongsTo(tipe_kamar::class);
     }
 }

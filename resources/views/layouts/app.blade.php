@@ -34,6 +34,21 @@
 
                     </ul>
 
+                    <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home">Reservasi</a>
+                              </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pembayaran">Pembayaran</a>
+                              </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pengunjung">Pengunjung</a>
+                              </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/history/transaksi">History</a>
+                              </li>
+                    </ul>
+
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
