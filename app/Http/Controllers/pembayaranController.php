@@ -56,7 +56,7 @@ class pembayaranController extends Controller
     public function show($id)
     {
         $history = history_trans::find($id);
-    //    return  $history->reservasi->tbl_kamar->id;
+    //    return  $history->reservasi->tbl_kamar->tipe_kamar->nama_tipe;
         // $res  = reservasi::find(3);
         // return $res->kamar->id;
 

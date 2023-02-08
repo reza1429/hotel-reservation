@@ -33,7 +33,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="svReservasi()">Save changes</button>
+            <button type="button" class="btn btn-primary" onclick="svReservasi('exampleModal-{{$md->id}}')">Save changes</button>
         </div>
         </div>
     </div>
@@ -59,12 +59,13 @@
     
 
 <script>
-    function svReservasi(){
+    function svReservasi(mdId){
         let nama = $('#nama').val()
         // let tipeKamar = $('#inputGroupType').val()
         let noKamar = $('#inputGroupSelectNokamar').val()
         let durasi = $('#lamaSewa').val()
-
+        let modalId = $(`#${mdId}`)
+        
         $.ajax({
             url: "/reservasi",
             type:"POST",
@@ -74,10 +75,15 @@
             data:{ nama, noKamar, durasi},
             success: function(res){
                 if(res.success){
+                    modalId.modal('hide');
                     Swal.fire({
                         icon: 'success',
                         title: res.message,
                         timer: 4000
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            $(location).prop('href', 'http://127.0.0.1:8000/home')
+                        } 
                     })
                 }
             },
