@@ -91,7 +91,7 @@
                     <div class="card-header bg-danger">
                         <h6 class="m-0  text-white d-flex align-items-center justify-content-between">
                             Pengunjung
-                            <button class="btn btn-sm btn-outline-light px-3 rounded-4">
+                            <button class="btn btn-sm btn-outline-light px-3 rounded-4" data-bs-toggle="modal" title="Tambah Data Pengunjung" data-bs-target="#exampleModal">
                                 <i class="fa fa-plus"></i>
                                 Pengunjung
                             </button>
@@ -154,6 +154,45 @@
         </div>
     </div>
 
+    {{-- Modal + pengunjung --}}
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Tambah Pengunjung</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                
+                <form action="{{ route('pengunjung.store') }}" method="post">
+                    @csrf
+                   
+                    <div class="form-group mt-1">
+                        <input type="text" class="form-control" placeholder="Nama" required min="4" max="25" name="nama">
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" placeholder="Alamat"required min="4" max="25" name="alamat">
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" placeholder="Nomor KTP" required min="4" max="25" name="no_ktp">
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" class="form-control" placeholder="Nomor Telp"required min="4" max="25" name="no_telp">
+                    </div>
+                   
+                    
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+              <button  type="submit" class="btn btn-success">Simpan</button>
+    
+            </form>
+    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script>
         function searchCust(e){
             let textvalx = $('#customer-search')
