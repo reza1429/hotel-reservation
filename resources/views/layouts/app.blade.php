@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Hotel</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -45,7 +45,7 @@
                     <ul class="navbar-nav me-auto">
                         {{-- <a href="" class="text-none">History Transaksi</a> --}}
                     </ul>
-
+                    @auth
                     <ul class="navbar-nav ">
                             <li class="nav-item">
                                 <a class="nav-link" href="/home">Reservasi</a>
@@ -65,7 +65,7 @@
                                 </ul>
                               </li>
                     </ul>
-
+                    @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

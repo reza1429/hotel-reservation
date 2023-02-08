@@ -51,7 +51,7 @@
     <div class="container">
         <div class="card border-0 shadow-lg mb-4">
             <div class="card-header bg-danger">
-                <h4 class="m-0 fw-bold text-white">Reservasi</h4>
+                <h6 class="m-0  text-white">Reservasi</h6>
             </div>
             <div class="card-body ">
                 <table class="table table-borderless table-hover text-center">
@@ -89,13 +89,13 @@
             <div class="col-8">
                 <div class="card border-0 shadow-lg">
                     <div class="card-header bg-danger">
-                        <h4 class="m-0 fw-bold text-white">
-                            Pelanggan
-                            <button class="btn btn-sm btn-outline-light fw-bold px-3 rounded-4">
-                                tambah
-                                <i class="fa fa-plus fa"></i>
+                        <h6 class="m-0  text-white d-flex align-items-center justify-content-between">
+                            Pengunjung
+                            <button class="btn btn-sm btn-outline-light px-3 rounded-4">
+                                <i class="fa fa-plus"></i>
+                                Pengunjung
                             </button>
-                        </h4>
+                        </h6>
                     </div>
                     <div class="card-body">
                         <div class="row mb-3">
@@ -127,7 +127,7 @@
             <div class="col">
                 <div class="card border-0 shadow-lg text-center">
                     <div class="card-header bg-danger">
-                        <h4 class="fw-bold m-0 text-white">Tipe Kamar</h4>
+                        <h6 class=" m-0 text-white">Tipe Kamar</h6>
                     </div>
                     <div class="card-body">
                         <table class="table table-borderless table-hover">
