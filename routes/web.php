@@ -5,6 +5,7 @@ use App\Http\Controllers\reservasiController;
 use App\Http\Controllers\kamarController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\pengunjungController;
+use App\Http\Controllers\pembayaranController;
 
 
 /*
@@ -29,9 +30,17 @@ Route::resource('kamar',kamarController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/search/customer', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 
+//pengunjung
+Route::get('/search/customer', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
 Route::resource('/pengunjung', pengunjungController::class );
 Route::get('cari/pengunjung', [pengunjungController::class, 'cari'])->name('pengunjung.cari');
+
+// Pembayaran
+Route::resource('/pembayaran', pembayaranController::class);
+Route::get('cari/pembayaran', [pembayaranController::class, 'cari'])->name('pembayaran.cari');
+Route::get('history/transaksi', [pembayaranController::class, 'history'])->name('pembayaran.history');
+
+
 
 
