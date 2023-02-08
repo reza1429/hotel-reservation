@@ -53,7 +53,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="/pengunjung">Pengunjung</a>
                               </li>
-                          
+                              <li class="nav-item">
+                                <a class="nav-link" href="/kamar">Kamar</a>
+                              </li>
                             
                               <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
