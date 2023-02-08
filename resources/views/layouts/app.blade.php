@@ -39,13 +39,18 @@
                                 <a class="nav-link" href="/home">Reservasi</a>
                               </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/pembayaran">Pembayaran</a>
-                              </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="/pengunjung">Pengunjung</a>
                               </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/history/transaksi">History</a>
+                          
+                            
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Transaksi
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <li><a class="dropdown-item" href="/pembayaran">Pembayaran</a></li>
+                                  <li><a class="dropdown-item" href="/history/transaksi">History</a></li>
+                                </ul>
                               </li>
                     </ul>
 

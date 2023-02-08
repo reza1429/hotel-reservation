@@ -21,6 +21,10 @@
                         <tr >
                             <td class="col-md-2  fw-bold">Tanggal Reservasi : {{  $history->reservasi->created_at  }}  </td>
                         </tr>
+                        <tr >
+                            <td class="col-md-2  ">Nama Pemesan : {{  $history->reservasi->pengunjung->nama  }}  </td>
+                        </tr>
+                       
                     </table>
                     <table class="table table-responsive table-stripped table-bordered">
                         <thead class="thead-light"> 
@@ -34,17 +38,17 @@
                                 
                             <tr>
                             <td>1</td>
-                            <td>{{ $history->reservasi->kamar->kode_ruangan }}</td>
-                            <td>{{ $history->reservasi->kamar->tipe->nama_tipe }}</td>
+                            <td>{{ $history->reservasi->tbl_kamar->kode_ruangan }}</td>
+                            <td>{{ $history->reservasi->tbl_kamar->tipe->nama_tipe }}</td>
                             <td>{{ $history->reservasi->lama_sewa }} Hari</td>
                             <td class="text-end">
-                               Rp. {{number_format( $history->reservasi->kamar->tipe->harga) }}
+                               Rp. {{number_format( $history->reservasi->tbl_kamar->tipe->harga) }}
                             </td>
                         </tr>
 
                         <tr class="text-end">
                             <td colspan="4" class="text-end">GranTotal</td>
-                            <td>Rp. {{number_format( $history->reservasi->kamar->tipe->harga * $history->reservasi->lama_sewa )}}</td>
+                            <td>Rp. {{number_format( $history->reservasi->tbl_kamar->tipe->harga * $history->reservasi->lama_sewa )}}</td>
                         </tr>
                         <tr class="text-end">
                             <td colspan="4"class="text-end">Uang Bayar</td>
@@ -52,7 +56,7 @@
                         </tr>
                         <tr class="text-end">
                             <td colspan="4"class="text-end">Uang Kembalian</td>
-                            <td>Rp. {{number_format(($history->reservasi->kamar->tipe->harga * $history->reservasi->lama_sewa)- $history->uang_bayar )}}</td>
+                            <td>Rp. {{number_format(($history->reservasi->tbl_kamar->tipe->harga * $history->reservasi->lama_sewa)- $history->uang_bayar )}}</td>
                         </tr>
                         </tbody>
                     </table>
