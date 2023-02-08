@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\tbl_kamar as kamar;
+use App\Models\reservasi;
+use App\Models\tipe_kamar;
+use App\Models\pembayaran;
 class reservasiController extends Controller
 {
     /**
@@ -18,7 +21,8 @@ class reservasiController extends Controller
 
     public function index()
     {
-        //
+        $kamar = kamar::where('tipe_id', request()->get('val'))->get();
+        return $kamar;
     }
 
     /**
@@ -39,7 +43,26 @@ class reservasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        reservasi::create([
+            'pengunjung_id' => $request->post('nama'),
+            'kamar_id' => $request->post('noKamar'),
+            'status_pay' => 1,
+            'lama_sewa' => $request->post('durasi'),
+        ]);
+
+        $reservasi = reservasi::with('tbl_kamar.tipe_kamar')->latest()->first();
+        pembayaran::create([
+            'reservasi_id' => $reservasi->id,
+            'total_harga' => $reservasi->lama_sewa * $reservasi->tbl_kamar->tipe_kamar->harga,
+            'uang_bayar' => 0,
+            'kode_bayar' => 123,
+        ]);
+
+        // return $reservasi;
+        return response()->json([
+            'success' => true,
+            'message' => 'reservasi berhasil dibuat!'
+        ]);
     }
 
     /**

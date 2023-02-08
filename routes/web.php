@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 
 Route::resource('reservasi',reservasiController::class);
-Route::get('/create/reservation/{id}', [reservasiController::class, 'createReservation'])->name('createReservation');
+// Route::get('/create/reservation/{id}', [reservasiController::class, 'createReservation'])->name('createReservation');
 Route::resource('kamar',kamarController::class);
 
 Auth::routes();

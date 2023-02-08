@@ -36,13 +36,14 @@ class HomeController extends Controller
     {
         // return true;
         if(request()->get('val') == null){
-            $pengunjung = pengunjung::where('no_ktp', 'asdf')->get();
+            $pengunjung = [];
             // $pengunjung = pengunjung::where('no_ktp', request()->get('val'))->get();
         }else{
             $pengunjung = pengunjung::where('no_ktp','LIKE', '%'.request()->get('val').'%')->get();
         }
         // return $pengunjung;
-        $html = view('home-customer', compact('pengunjung'))->render();
+        $tipes = tipe_kamar::get();
+        $html = view('home-customer', compact('pengunjung', 'tipes'))->render();
 
         return response()->json([
             'success' => true,

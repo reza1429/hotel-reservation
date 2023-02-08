@@ -19,8 +19,14 @@
     {{-- font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    {{-- sweet alert --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    {{-- CSRF Token For JS --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
     <div id="app">

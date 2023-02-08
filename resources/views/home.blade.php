@@ -1,6 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
+
+    {{-- detail reservasi modal --}}
+    @foreach ($reservasi as $detail)
+    <div class="modal fade" id="modal-detail{{$detail->id}}">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Detail Pengunjung</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                <table class="table table-borderless">
+                <tr>
+                    <td>NIK : {{$detail->pengunjung->no_ktp}}</td>
+                </tr>
+                <tr>
+                    <td>NAMA : {{$detail->pengunjung->nama}}</td>
+                </tr>
+                <tr>
+                    <td>ALAMAT : {{$detail->pengunjung->alamat}}</td>
+                </tr>
+                <tr>
+                    <td>NO. Telp : {{$detail->pengunjung->no_telp}}</td>
+                </tr>
+                <tr>
+                    <td>TIPE RUANGAN : {{$detail->tbl_kamar->tipe_kamar->nama_tipe}}</td>
+                </tr>
+                <tr>
+                    <td>KODE RUANGAN : {{$detail->tbl_kamar->kode_ruangan}}</td>
+                </tr>
+                <tr>
+                    <td>TANGGAL CHECK-IN : {{$detail->created_at->format('l, j F Y H:i')}}</td>
+                </tr>
+                <tr><?php
+                    $in = strtotime($detail->created_at);
+                    $out = (int)$detail->lama_sewa*60*60*24;
+                    $final = $out + $in;
+                    ?>
+                    <td>TANGGAL CHECK-OUT : <?=date('l, j F Y H:i', $final )?></td>
+                </tr>
+                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
     <div class="container">
         <div class="card border-0 shadow-lg mb-4">
             <div class="card-header bg-danger">
@@ -56,7 +103,7 @@
                                 <p class="m-0 ">NIK</p>
                             </div>
                             <div class="col">
-                                <input onkeyup="searchCust(this)" type="text" class="form-control" name="nama_costumer" id="nama_costumer">
+                                <input onkeyup="searchCust(this)" type="number" class="form-control" name="nama_costumer" id="nama_costumer" autofocus>
                             </div>
                         </div>
                         <hr>
@@ -65,13 +112,6 @@
                                 <p>Nama Customer</p>
                             </div> --}}
                             <div class="col" id="customers">
-                                <p id="customer-search" class="d-none bg-danger rounded-1 p-2 text-white fs-5 mb-2">
-                                    </span class="fw-bold " style="letter-spacing: 2px"> 
-                                        36791111222333444 
-                                    <span>
-                                    a/n Moreno Hernakov
-                                    <button class="float-end btn btn-sm btn-light fw-bold ">Pesan!!</button>
-                                </p>
                             </div>
                             {{-- <form action="">
                                 <div class="form-group">
@@ -112,78 +152,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-    @foreach ($reservasi as $detail)
-    <div class="modal fade" id="modal-detail{{$detail->id}}">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Detail Pengunjung</h4>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body table-responsive">
-                <table class="table table-borderless">
-                <tr>
-                    <td>NIK : {{$detail->pengunjung->no_ktp}}</td>
-                </tr>
-                <tr>
-                    <td>NAMA : {{$detail->pengunjung->nama}}</td>
-                </tr>
-                <tr>
-                    <td>ALAMAT : {{$detail->pengunjung->alamat}}</td>
-                </tr>
-                <tr>
-                    <td>NO. Telp : {{$detail->pengunjung->no_telp}}</td>
-                </tr>
-                <tr>
-                    <td>TIPE RUANGAN : {{$detail->tbl_kamar->tipe_kamar->nama_tipe}}</td>
-                </tr>
-                <tr>
-                    <td>KODE RUANGAN : {{$detail->tbl_kamar->kode_ruangan}}</td>
-                </tr>
-                <tr>
-                    <td>TANGGAL CHECK-IN : {{$detail->created_at->format('l, j F Y H:i')}}</td>
-                </tr>
-                <tr><?php
-                    $in = strtotime($detail->created_at);
-                    $out = (int)$detail->lama_sewa*60*60*24;
-                    $final = $out + $in;
-                    ?>
-                    <td>TANGGAL CHECK-OUT : <?=date('l, j F Y H:i', $final )?></td>
-                </tr>
-                </table>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
-
-    <script>
-        function detailCust(e){
-            let textvalx = $('#modal-detail')
-            // textvalx.removeClass("d-none");
-            // textvalx.text(e.value)
-            let val_detail = e.value
-            $.ajax({
-                url: "/detail/customer",
-                type:"GET",
-                data:{ val_detail },
-                success: function(res){
-                    // if(res.success){
-                    //     alert(res.message)
-                    // }
-                    $("#modal-detail").html(res.html)
-                    console.log(res)
-                },
-                error: function(error) {
-                    console.log(error)
-                }
-            });
-            // console.log(e.value)
-        }
-    </script>
 
     <script>
         function searchCust(e){
@@ -200,7 +169,7 @@
                     //     alert(res.message)
                     // }
                     $("#customers").html(res.html)
-                    console.log(res)
+                    // console.log(res)
                 },
                 error: function(error) {
                     console.log(error)
