@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add Reservation</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tambah Reservasi</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -13,27 +13,27 @@
             <input value="{{$md->id}}" type="hidden" class="form-control" id="nama" name="namaPengunjung" aria-describedby="nama" readonly>
             <div class="input-group mb-3">
                 
-                <span class="input-group-text">Type Kamar</span>
+                <span class="input-group-text">Tipe Kamar</span>
                 <select class="form-select" id="inputGroupType" onchange="roomtype()">
-                    <option selected>Choose...</option>
+                    <option selected>Pilih Tipe...</option>
                     @foreach ($tipes as $tipe)
                         <option value="{{$tipe->id}}" name="tipeKamar">{{$tipe->nama_tipe}}</option>
                     @endforeach
                 </select>
                 {{-- <input type="text" class="form-control" placeholder="Username" aria-label="Username"> --}}
-                <span class="input-group-text">No kamar</span>
+                <span class="input-group-text">Nomor Kamar</span>
                 <select class="form-select" id="inputGroupSelectNokamar" disabled>
                 </select>
                 {{-- <input type="text" class="form-control" placeholder="Server" aria-label="Server"> --}}
             </div>
             <div class="input-group">
                 <input type="number" class="form-control" aria-label="Dollar amount (with dot and two decimal places)" placeholder="Lama Sewa" name="lamaSewa" id="lamaSewa">
-                <span class="input-group-text">Malam</span>
+                <span class="input-group-text">Hari</span>
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="svReservasi('exampleModal-{{$md->id}}')">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            <button type="button" class="btn btn-primary" onclick="svReservasi('exampleModal-{{$md->id}}')">Simpan</button>
         </div>
         </div>
     </div>
@@ -44,11 +44,12 @@
     </span class="fw-bold " style="letter-spacing: 2px"> 
         {{$item->no_ktp}} 
     <span>
-    a/n {{$item->nama}}
+    | {{$item->nama}}
     
     <!-- Button trigger modal -->
 <button type="button" class="float-end btn btn-sm btn-light fw-bold " data-bs-toggle="modal" data-bs-target="#exampleModal-{{$item->id}}">
-    Launch demo modal
+    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+    Pesan
   </button>
     {{-- <a href="/create/reservation/{{$item->id}}" class="float-end btn btn-sm btn-light fw-bold ">Pesan!!</a> --}}
 </p>

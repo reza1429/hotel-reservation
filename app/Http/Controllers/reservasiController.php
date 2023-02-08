@@ -21,7 +21,8 @@ class reservasiController extends Controller
 
     public function index()
     {
-        $kamar = kamar::where('tipe_id', request()->get('val'))->get();
+        $kamar = kamar::where('tipe_id', request()->get('val'))
+                        ->where('status', 0)->get();
         return $kamar;
     }
 
@@ -61,7 +62,7 @@ class reservasiController extends Controller
         // return $reservasi;
         return response()->json([
             'success' => true,
-            'message' => 'reservasi berhasil dibuat!'
+            'message' => 'Reservasi Berhasil Dibuat!'
         ]);
     }
 
