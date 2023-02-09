@@ -7,6 +7,7 @@ use App\Models\tbl_kamar as kamar;
 use App\Models\reservasi;
 use App\Models\tipe_kamar;
 use App\Models\pembayaran;
+
 class reservasiController extends Controller
 {
     /**
@@ -14,9 +15,21 @@ class reservasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function createReservation($id)
+    public function checkoutReservation()
     {
-        return $id;
+        reservasi::where('id', request()->resId)->update([
+            'status_res' => 1
+        ]);
+
+        kamar::where('id', request()->kamarId)->update([
+            'status' => 0
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'kamar berhasil diheckout.'
+        ]);
+        
     }
 
     public function index()
@@ -47,7 +60,7 @@ class reservasiController extends Controller
         reservasi::create([
             'pengunjung_id' => $request->post('nama'),
             'kamar_id' => $request->post('noKamar'),
-            'status_pay' => 1,
+            'status_pay' => 0,
             'lama_sewa' => $request->post('durasi'),
         ]);
 
@@ -56,7 +69,7 @@ class reservasiController extends Controller
             'reservasi_id' => $reservasi->id,
             'total_harga' => $reservasi->lama_sewa * $reservasi->tbl_kamar->tipe_kamar->harga,
             'uang_bayar' => 0,
-            'kode_bayar' => 123,
+            'kode_bayar' => 'HH'.'-'. $reservasi->id .'-'. date('Y') ,
         ]);
 
         // return $reservasi;
@@ -108,6 +121,16 @@ class reservasiController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // return $id;
+        reservasi::destroy($id);
+
+        kamar::where('id', request()->kamarId)->update([
+            'status' => 0
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Reservasi Berhasil Dihapus!'
+        ]);
     }
 }

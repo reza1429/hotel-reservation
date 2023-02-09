@@ -54,7 +54,7 @@
     {{-- <a href="/create/reservation/{{$item->id}}" class="float-end btn btn-sm btn-light fw-bold ">Pesan!!</a> --}}
 </p>
 @empty
-<P>Pelanggan tidak tersedia</P>
+<P class="fw-bold text-danger fs-4">Pelanggan tidak tersedia!!</P>
 @endforelse
 
     
@@ -79,11 +79,10 @@
                     modalId.modal('hide');
                     Swal.fire({
                         icon: 'success',
-                        title: res.message,
-                        timer: 4000
+                        title: res.message
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            $(location).prop('href', 'http://127.0.0.1:8000/home')
+                            window.location.reload()
                         } 
                     })
                 }

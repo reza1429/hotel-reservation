@@ -23,11 +23,14 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('reservasi',reservasiController::class);
-// Route::get('/create/reservation/{id}', [reservasiController::class, 'createReservation'])->name('createReservation');
-Route::resource('kamar',kamarController::class);
-
 Auth::routes();
+
+// Reservasi
+Route::resource('reservasi',reservasiController::class);
+Route::post('/reservasi/checkout', [reservasiController::class, 'checkoutReservation'])->name('checkoutReservation');
+
+// Kamar
+Route::resource('kamar',kamarController::class);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

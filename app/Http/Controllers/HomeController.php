@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $reservasi = reservasi::with('pengunjung', 'tbl_kamar.tipe_kamar')->get();
+        $reservasi = reservasi::where('status_res', 0)->with('pengunjung', 'tbl_kamar.tipe_kamar')->get();
         $tipe = tipe_kamar::get();
         // return $reservasi;
         return view('home', compact('tipe', 'reservasi'));
