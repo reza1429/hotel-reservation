@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\tbl_kamar;
+use App\Models\tipe_kamar;
 use Illuminate\Http\Request;
 
 class kamarController extends Controller
@@ -11,14 +13,11 @@ class kamarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-     public function __construct()
-     {
-         $this->middleware('auth');
-     }
     public function index()
     {
-        return view('kamar');
+        $kamars = tbl_kamar::with('tipe_kamar')->paginate(5);
+        $tipe_kamars = tipe_kamar::all();
+        return view('kamar.index', compact('kamars', 'tipe_kamars'));
     }
 
     /**
@@ -39,7 +38,14 @@ class kamarController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'kode_ruangan' => 'required',
+            'tipe_id' => 'required',
+            'status' => 'required',
+        ]); 
+
+        tbl_kamar::create($request->all());
+        return redirect()->back()->with('succes', 'Kamar ditambahkan!');
     }
 
     /**
@@ -50,7 +56,7 @@ class kamarController extends Controller
      */
     public function show($id)
     {
-        //
+        return tbl_kamar::findOrFail($id);
     }
 
     /**
@@ -61,7 +67,7 @@ class kamarController extends Controller
      */
     public function edit($id)
     {
-        //
+        
     }
 
     /**
@@ -73,7 +79,22 @@ class kamarController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kamar = tbl_kamar::findOrFail($id);
+        
+        $this->validate($request, [
+            'kode_ruangan' => 'required',
+            'tipe_id' => 'required',
+            'status' => 'required',
+        ]); 
+
+        $kamar->update([
+            'kode_ruangan' => $request->kode_ruangan,
+            'tipe_id' => $request->tipe_id,
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('succes', 'Kamar diperbarui!');
+
     }
 
     /**
@@ -84,6 +105,35 @@ class kamarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        tbl_kamar::findOrFail($id)->delete();
+        return redirect()->back()->with('succes', 'Kamar terhapus!');
+    }
+
+    /**
+     * Function Tipe Kamar
+     */
+    public function tipe_store(Request $request)
+    {
+        $this->validate($request, [
+            'nama_tipe' => 'required',
+            'harga' => 'required'
+        ]); 
+
+        tipe_kamar::create($request->all());
+        return redirect()->back()->with('success', 'Tipe ditambahkan!');
+    }
+
+    public function tipe_update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'nama_tipe' => 'required',
+            'harga' => 'required'
+        ]); 
+    }
+
+    public function tipe_destroy($id)
+    {
+        tipe_kamar::findOrFail($id)->delete();
+        return redirect()->back()->with('success', 'Tipe terhapus!');
     }
 }

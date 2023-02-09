@@ -28,9 +28,9 @@ Auth::routes();
 // Reservasi
 Route::resource('reservasi',reservasiController::class);
 Route::post('/reservasi/checkout', [reservasiController::class, 'checkoutReservation'])->name('checkoutReservation');
-
-// Kamar
 Route::resource('kamar',kamarController::class);
+
+Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -45,5 +45,10 @@ Route::get('cari/pembayaran', [pembayaranController::class, 'cari'])->name('pemb
 Route::get('history/transaksi', [pembayaranController::class, 'history'])->name('pembayaran.history');
 
 
+// Kamar
 
+Route::resource('kamar',kamarController::class);
+Route::post('/kamar/tipe/store', [kamarController::class, 'tipe_store'])->name('tipe.store');
+Route::put('/kamar/tipe/{id}', [kamarController::class, 'tipe_update'])->name('tipe.update');
+Route::post('/kamar/tipe/{id}', [kamarController::class, 'tipe_destroy'])->name('tipe.destroy');
 
