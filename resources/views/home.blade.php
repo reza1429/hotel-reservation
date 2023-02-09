@@ -116,12 +116,13 @@
                             <td>{{$item->tbl_kamar->kode_ruangan}}</td>
                             <td>{{$item->created_at->format('l, j F Y H:i')}}</td>
                             <td>
-                                <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#modal-detail{{$item->id}}">
+                                <button type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modal-detail{{$item->id}}">
                                     <i class="fa fa-info" aria-hidden="true"></i> Detail
                                 </button>&nbsp;&nbsp;
                                 @if($item->status_pay)
-                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="checkout({{$item}})">
-                                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> Checkout
+                                <button type="button" class="btn btn-sm btn-outline-success text-" onclick="checkout({{$item}})">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    Checkout
                                 </button>
                                 @else
                                 <button type="button" class="btn btn-sm btn-outline-danger" onclick="deletee({{$item}})">
@@ -156,7 +157,7 @@
                                 <p class="m-0 ">NIK</p>
                             </div> --}}
                             {{-- <div class="col"> --}}
-                            <input onkeyup="searchCust(this)" type="number" class="form-control" name="nama_costumer" id="nama_costumer" placeholder="Masaukna NIK Pengunjung" autofocus>
+                            <input onkeyup="searchCust(this)" type="number" class="form-control" name="nama_costumer" id="nama_costumer" placeholder="Masukan NIK Pengunjung" autofocus>
                             {{-- </div> --}}
                         </div>
                         {{-- <hr> --}}

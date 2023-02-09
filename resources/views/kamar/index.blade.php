@@ -78,7 +78,7 @@
                                 <td>{{$kamars->firstItem()+$i}}.</td>
                                 <td>{{ $kamar->kode_ruangan }}</td>
                                 <td>{{ $kamar->tipe_kamar->nama_tipe }}</td>
-                                <td>{{ $kamar->status }}</td>
+                                <td>@if($kamar->status == 1)Terpakai @else Tersedia @endif </td>
                                 <td>
                                     {{-- <a class="btn btn-warning" href="/kamar/{{ $kamar->id }}"></a> --}}
                                     <button class="btn btn-sm btn-warning btn-detail open_modal" value="{{$kamar->id}}"><i class="fa fa-edit" aria-hidden="true"></i></button>

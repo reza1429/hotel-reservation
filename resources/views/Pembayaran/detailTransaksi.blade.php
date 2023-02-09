@@ -56,7 +56,7 @@
                         </tr>
                         <tr class="text-end">
                             <td colspan="4"class="text-end">Uang Kembalian</td>
-                            <td>Rp. {{number_format(($history->reservasi->tbl_kamar->tipe_kamar->harga * $history->reservasi->lama_sewa)- $history->uang_bayar )}}</td>
+                            <td>Rp. {{number_format(  $history->uang_bayar - ($history->reservasi->tbl_kamar->tipe_kamar->harga * $history->reservasi->lama_sewa)  )}}</td>
                         </tr>
                         </tbody>
                     </table>
