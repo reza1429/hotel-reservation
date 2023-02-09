@@ -5,7 +5,7 @@
         <div class="col-lg-6 mb-2">
             <div class="card border-0 shadow">
                 <div class="card-header bg-danger fs-4 fw-bold text-light">Daftar Tipe Kamar 
-                    <button type="button" class="btn btn-dark rounded d-inline float-end" data-bs-toggle="modal" data-bs-target="#tipe-kamar">
+                    <button type="button" class="btn btn-outline-light rounded d-inline float-end" data-bs-toggle="modal" data-bs-target="#tipe-kamar">
                         <i class="fa fa-plus" aria-hidden="true"></i> Tipe
                     </button>
                 </div>
@@ -27,10 +27,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($tipe_kamars as $tipe)
+                            @foreach ($tipe_kamars as $i => $tipe)
                                 
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ ++$i }}.</td>
                                 <td>{{ $tipe->nama_tipe }}</td>
                                 <td>Rp. {{ number_format($tipe->harga) }}</td>
                                 <td>
@@ -50,7 +50,7 @@
         <div class="col-lg-6">
             <div class="card border-0 shadow">
                 <div class="card-header bg-danger fs-4 fw-bold text-light">Daftar Kamar
-                    <button id="tkamar" type="button" class="btn btn-dark rounded d-inline float-end" data-bs-toggle="modal" data-bs-target="#kamar">
+                    <button id="tkamar" type="button" class="btn btn-outline-light rounded d-inline float-end" data-bs-toggle="modal" data-bs-target="#kamar">
                         <i class="fa fa-plus" aria-hidden="true"></i> Kamar
                     </button>
                 </div>
@@ -72,10 +72,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($kamars as $kamar)
+                            @foreach ($kamars as $i => $kamar)
                                 
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{$kamars->firstItem()+$i}}.</td>
                                 <td>{{ $kamar->kode_ruangan }}</td>
                                 <td>{{ $kamar->tipe_kamar->nama_tipe }}</td>
                                 <td>{{ $kamar->status }}</td>
@@ -109,7 +109,7 @@
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header bg-primary fs-4 fw-bold text-light">
+            <div class="modal-header bg-danger fs-4 fw-bold text-light">
                 <h4 class="modal-title" id="myModalLabel">Edit</h4>
             </div>
             <div class="modal-body">
@@ -147,7 +147,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Tambah</button>
+                    <button type="submit" class="btn btn-danger">Tambah</button>
                 </div>
             </form>
             </div>
