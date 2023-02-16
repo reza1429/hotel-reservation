@@ -45,7 +45,7 @@
                         <h4 class="m-0 fw-bold text-white">
                             Pelanggan
                             &nbsp;
-                            <button class="btn btn-sm btn-light fw-bold px-3 rounded-5">tambah +</button>
+                            <button class="btn btn-sm btn-light fw-bold px-3 rounded-5" data-bs-toggle="modal" data-bs-target="#modal-tambahPengunjung">tambah +</button>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -68,7 +68,7 @@
                                         36791111222333444 
                                     <span>
                                     a/n Moreno Hernakov
-                                    <button class="float-end btn btn-sm btn-light fw-bold ">Pesan!!</button>
+                                    <button class="float-end btn btn-sm btn-light fw-bold " data-bs-toggle="modal" data-bs-target="#modal-tambahReservasi{{$item->id}}">Pesan!!</button>
                                 </p>
                             </div>
                             {{-- <form action="">
@@ -113,12 +113,108 @@
 
     </div>
 
+    <!-- modal tambah pengunjung -->
+    <div class="modal fade" id="modal-tambahPengunjung">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah Pengunjung</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form method="post" action="{{ route('pengunjung.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    <p>Nama Pengunjung</p>
+                    <input class="form-control" type="text" name="nama" id="nama">
+
+                    <p>Alamat Pengunjung</p>
+                    <input class="form-control" type="text" name="alamat" id="alamat">
+
+                    <p>No KTP Pengunjung</p>
+                    <input class="form-control" type="text" name="no_ktp" id="no_ktp">
+
+                    <p>No. Telp Pengunjung</p>
+                    <input class="form-control" type="text" name="no_telp" id="no_telp"><br>
+                    
+                    <input type="submit" class="btn btn-success" value="simpan">
+                    <a href="{{ route('home') }}" class="btn btn-danger">Batal</a>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal tambah reservasi -->
+    <div class="modal fade" id="modal-tambahReservasi">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Tambah Reservasi</h4>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form method="post" action="{{ route('reservasi.store') }}" enctype="multipart/form-data">
+                    @csrf
+                    @foreach ($reservasi as $addreservasi)
+                    <input type="hidden" name="id_pengunjung" value="{{ $addreservasi->id }}">
+                    <p>Nama Pengunjung</p>
+                    <input class="form-control" type="text" name="nama" id="nama" value="{{ $addreservasi->nama }}" aria-label="Disabled input example" disabled readonly>
+
+                    <p>No KTP Pengunjung</p>
+                    <input class="form-control" type="text" name="no_ktp" id="no_ktp" value="{{ $addreservasi->no_ktp }}" aria-label="Disabled input example" disabled readonly>
+
+                    <p>No. Telp Pengunjung</p>
+                    <input class="form-control" type="text" name="no_telp" id="no_telp" value="{{ $addreservasi->no_telp }}" aria-label="Disabled input example" disabled readonly>
+
+                    <p>Alamat Pengunjung</p>
+                    <input class="form-control" type="text" name="alamat" id="alamat" value="{{ $addreservasi->alamat }}" aria-label="Disabled input example" disabled readonly>
+                    @endforeach    
+
+                    <p>Lama Sewa</p>
+                    <input class="form-control" type="text" name="no_ktp" id="no_ktp">
+                    
+                    <p>Status Pasien</p>
+                    <select class="form-select form-control" name="status" id="status">
+                        <!-- <option selected disabled>Pilih Jenis Kelamin</option> -->
+                        <option value="rawat">Dirawat</option>
+                        <option value="kembali">Kembali ke kelas</option>
+                        <option value="pulang">Dipulangkan</option>
+                        <option value="rujuk">Dirujuk</option>
+                    </select>
+                    
+                    <input type="submit" class="btn btn-success" value="simpan">
+                    <a href="{{ route('home') }}" class="btn btn-danger">Batal</a>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal detail reservasi -->
     @foreach ($reservasi as $detail)
     <div class="modal fade" id="modal-detail{{$detail->id}}">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Detail Pengunjung</h4>
+                    <h4 class="modal-title">Detail Reservasi</h4>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body table-responsive">
