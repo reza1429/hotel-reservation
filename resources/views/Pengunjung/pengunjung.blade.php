@@ -17,7 +17,7 @@
                     <div class="d-flex align-items-center">
       
                     <div class="input-group" style="width:85%">
-                        <input type="text" class="form-control " placeholder="Masukan : Nama / NIK  [ENTER]"  name="nama">
+                        <input type="text" class="form-control " placeholder="Masukan : Nama / NIK  [ENTER]" value="{{$hasilCari}}" name="nama">
                         <button class="btn  btn-success" type="submit" title="Cari"><i class="fa fa-search" aria-hidden="true"></i></button>
                         <a href="/pengunjung"class="btn btn-warning text-light me-1" title="Refresh Page"><i class="fa fa-refresh" aria-hidden="true"></i></a>
                     </div>

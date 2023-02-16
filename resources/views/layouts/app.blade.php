@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>Hotel</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -19,8 +19,14 @@
     {{-- font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    {{-- sweet alert --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    {{-- CSRF Token For JS --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 </head>
 <body>
     <div id="app">
@@ -39,7 +45,29 @@
                     <ul class="navbar-nav me-auto">
                         {{-- <a href="" class="text-none">History Transaksi</a> --}}
                     </ul>
-
+                    @auth
+                    <ul class="navbar-nav ">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/home">Reservasi</a>
+                              </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/pengunjung">Pengunjung</a>
+                              </li>
+                              <li class="nav-item">
+                                <a class="nav-link" href="/kamar">Kamar</a>
+                              </li>
+                            
+                              <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  Transaksi
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                  <li><a class="dropdown-item" href="/pembayaran">Pembayaran</a></li>
+                                  <li><a class="dropdown-item" href="/history/transaksi">History</a></li>
+                                </ul>
+                              </li>
+                    </ul>
+                    @endauth
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->

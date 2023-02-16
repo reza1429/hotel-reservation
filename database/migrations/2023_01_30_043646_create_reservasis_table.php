@@ -26,7 +26,8 @@ return new class extends Migration
             $table->foreign('pengunjung_id')->references('id')->on('pengunjungs')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('status_pay');
+            $table->boolean('status_pay')->default(0); //bool pembayaran
+            $table->boolean('status_res')->default(0); //bool checkout
             $table->integer('lama_sewa');
             $table->timestamps();
         });

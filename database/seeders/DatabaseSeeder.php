@@ -61,8 +61,24 @@ class DatabaseSeeder extends Seeder
             
         for ($i=1; $i <= 10; $i++) { 
             tbl_kamar::create([
-                'kode_ruangan' => 'A'.$i,
+                'kode_ruangan' => 'VVIP'.$i,
+                'tipe_id' => 2,
+                'status' => 0
+            ]);
+        }
+        
+        for ($i=1; $i <= 10; $i++) { 
+            tbl_kamar::create([
+                'kode_ruangan' => 'VIP'.$i,
                 'tipe_id' => 1,
+                'status' => 0
+            ]);
+        }
+        
+        for ($i=1; $i <= 10; $i++) { 
+            tbl_kamar::create([
+                'kode_ruangan' => 'REG'.$i,
+                'tipe_id' => 3,
                 'status' => 0
             ]);
         }

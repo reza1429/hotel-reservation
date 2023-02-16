@@ -12,6 +12,6 @@ class tipe_kamar extends Model
     protected $guarded = [];
 
     public function tbl_kamar(){
-        return $this->hasOne(tbl_kamar::class);
+        return $this->hasMany(tbl_kamar::class);
     }
 }

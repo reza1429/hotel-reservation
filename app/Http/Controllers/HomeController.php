@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $reservasi = reservasi::with('pengunjung', 'tbl_kamar.tipe_kamar')->get();
+        $reservasi = reservasi::where('status_res', 0)->with('pengunjung', 'tbl_kamar.tipe_kamar')->get();
         $tipe = tipe_kamar::get();
         // return $reservasi;
         return view('home', compact('tipe', 'reservasi'));
@@ -35,10 +35,15 @@ class HomeController extends Controller
     public function search()
     {
         // return true;
-        
-        $pengunjung = pengunjung::where('no_ktp', 'LIKE', '%'.request()->get('val').'%')->get();
+        if(request()->get('val') == null){
+            $pengunjung = [];
+            // $pengunjung = pengunjung::where('no_ktp', request()->get('val'))->get();
+        }else{
+            $pengunjung = pengunjung::where('no_ktp','LIKE', '%'.request()->get('val').'%')->get();
+        }
         // return $pengunjung;
-        $html = view('home-customer', compact('pengunjung'))->render();
+        $tipes = tipe_kamar::get();
+        $html = view('home-customer', compact('pengunjung', 'tipes'))->render();
 
         return response()->json([
             'success' => true,
